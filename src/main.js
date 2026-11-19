@@ -1518,6 +1518,36 @@ function closeCaughtModal() {
 }
 
 closeCaughtModalButton.addEventListener('click', closeCaughtModal);
+
+// =========================================
+// WELCOME POPUP - 20/11 MRS WINDY
+// =========================================
+
+const welcomeModal = document.querySelector('#welcomeModal');
+const closeWelcomeButton = document.querySelector('#closeWelcome');
+const enterFarmButton = document.querySelector('#enterFarm');
+
+function closeWelcomeModal() {
+  welcomeModal.classList.remove('open');
+  welcomeModal.setAttribute('aria-hidden', 'true');
+}
+
+// Show automatically when entering the website
+function openWelcomeModal() {
+  welcomeModal.classList.add('open');
+  welcomeModal.setAttribute('aria-hidden', 'false');
+}
+
+closeWelcomeButton.addEventListener('click', closeWelcomeModal);
+enterFarmButton.addEventListener('click', closeWelcomeModal);
+
+// Close when clicking outside the card
+welcomeModal.querySelector('.welcome-backdrop')
+  .addEventListener('click', closeWelcomeModal);
+
+// Show welcome popup on page entry
+openWelcomeModal();
+
 dismissCaughtModalButton.addEventListener('click', closeCaughtModal);
 caughtModal.addEventListener('click', (event) => {
   if (event.target.matches('[data-close-caught]')) closeCaughtModal();

@@ -542,3 +542,189 @@ textarea::placeholder { color: #a4b6a9; }
   .caught-dialog p { font-size: 11px; }
   .caught-footnote { font-size: 8px; }
 }
+
+/* =========================================
+   WELCOME POPUP - VIETNAMESE TEACHERS DAY
+========================================= */
+
+.welcome-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease, visibility .35s ease;
+}
+
+.welcome-modal.open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.welcome-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(35, 39, 34, .66);
+  backdrop-filter: blur(8px);
+}
+
+.welcome-card {
+  position: relative;
+  width: min(540px, 100%);
+  padding: 42px 38px 30px;
+  border: 2px solid #e7c58d;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at top left, #fff0df, transparent 45%),
+    linear-gradient(145deg, #fffdf5, #fff3e6);
+  box-shadow: 0 25px 80px rgba(0,0,0,.3);
+  text-align: center;
+  transform: translateY(25px) scale(.94);
+  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+  overflow: hidden;
+}
+
+.welcome-modal.open .welcome-card {
+  transform: translateY(0) scale(1);
+}
+
+.welcome-card::before,
+.welcome-card::after {
+  content: "✿";
+  position: absolute;
+  color: #e8a6a0;
+  font-size: 75px;
+  opacity: .18;
+}
+
+.welcome-card::before {
+  top: 10px;
+  left: 12px;
+}
+
+.welcome-card::after {
+  bottom: 5px;
+  right: 12px;
+}
+
+.welcome-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: #f4e6d7;
+  color: #856a55;
+  font-size: 25px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.welcome-decoration {
+  margin-bottom: 15px;
+  font-size: 30px;
+  letter-spacing: 8px;
+}
+
+.welcome-label {
+  color: #ad8459;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.welcome-date {
+  margin: 13px 0;
+  color: #c58b53;
+  font-family: Georgia, serif;
+  font-size: 48px;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+.welcome-card h1 {
+  margin: 8px 0;
+  color: #76513d;
+  font-family: Georgia, serif;
+  font-size: clamp(20px, 4vw, 27px);
+  line-height: 1.35;
+}
+
+.welcome-divider {
+  margin: 16px 0;
+  color: #d5a76c;
+  letter-spacing: 8px;
+}
+
+.welcome-card h2 {
+  margin: 8px 0 14px;
+  color: #bd795f;
+  font-family: Georgia, serif;
+  font-size: 34px;
+  font-style: italic;
+}
+
+.welcome-card p {
+  max-width: 390px;
+  margin: 0 auto;
+  color: #806f60;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.welcome-signature {
+  margin: 18px 0 23px;
+  color: #bb8a72;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  font-style: italic;
+}
+
+.welcome-button {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #d9a46d, #bd795f);
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: transform .2s, filter .2s;
+}
+
+.welcome-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.welcome-footer {
+  margin-top: 17px;
+  color: #b9a38d;
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 560px) {
+  .welcome-card {
+    padding: 38px 22px 24px;
+  }
+
+  .welcome-date {
+    font-size: 40px;
+  }
+
+  .welcome-card h2 {
+    font-size: 29px;
+  }
+}
