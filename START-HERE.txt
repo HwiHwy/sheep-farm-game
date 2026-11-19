@@ -1,0 +1,18 @@
+NONG TRAI CUU 3D — V11 NATURE + AUDIO
+
+1) Open this folder in VS Code.
+2) (Optional) Put sheep.glb and wolf.glb in public/models/.
+3) (Optional) Copy the GLTF folder and its companion textures/buffers from Quaternius' Ultimate Stylized Nature Pack into public/models/nature/.
+4) Open Terminal and run:
+
+   npm.cmd install
+   npm.cmd run dev
+
+5) Open the local URL printed by Vite (usually http://localhost:5173/).
+
+The game has built-in fallback characters and procedural nature props. It still runs if optional GLB/GLTF files are not supplied.
+
+Nature Pack source: https://poly.pizza/bundle/Ultimate-Stylized-Nature-Pack-zyIyYd9yGr
+License: CC0 / Public Domain.
+
+AUDIO: Add MP3/OGG/WAV files to public/audio/ and set their paths in AUDIO_CONFIG near the top of src/main.js. The gentle background music starts after the first user interaction. Use the AM THANH button to mute/unmute.
