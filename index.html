@@ -1,74 +1,151 @@
 <!doctype html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#eff5eb" />
-  <title>Mini Game World</title>
-  <link rel="stylesheet" href="./hub.css" />
+  <meta name="theme-color" content="#d9f1e5" />
+  <title>Nông Trại Cừu 3D — Nature + Audio</title>
 </head>
+
 <body>
-  <main id="gameRoot" aria-label="Khu vực trò chơi"></main>
+  <div id="game-world"></div>
 
-  <header class="hub-topbar" id="hubTopbar" hidden>
-    <div class="hub-brand"><span class="hub-brand-icon">✦</span><span>MINI GAME WORLD</span></div>
-    <div class="hub-topbar-right">
-      <span id="activeGameName" class="active-game-name">Game đang mở</span>
-      <button id="openGameMenu" class="switch-game-button" type="button">🎮 ĐỔI GAME</button>
-    </div>
-  </header>
+  <main class="interface">
+    <header class="topbar">
+      <div class="brand-mark">SF</div>
+      <div>
+        <div class="eyebrow">MINI GAME 3D</div>
+        <div class="brand-name">NÔNG TRẠI CỪU</div>
+      </div>
+      <div class="topbar-pill"><span class="live-dot"></span> FARM SIMULATOR</div>
+      <button id="audioToggle" class="audio-toggle" type="button" aria-pressed="true" title="Tắt âm thanh">🔊 ÂM
+        THANH</button>
+    </header>
 
-  <section id="gameMenu" class="game-menu is-open" aria-hidden="false">
-    <div class="menu-backdrop"></div>
-    <div class="menu-dialog" role="dialog" aria-modal="true" aria-labelledby="menuTitle">
-      <div class="menu-eyebrow">WELCOME TO MINI GAME WORLD</div>
-      <h1 id="menuTitle">Chọn trò chơi</h1>
-      <p class="menu-subtitle">Chọn một thế giới để bắt đầu trải nghiệm.</p>
+    <aside class="control-panel" id="controlPanel">
+      <div class="panel-heading">
+        <div>
+          <div class="eyebrow">QUẢN LÝ NGƯỜI CHƠI</div>
+          <h1>Đàn cừu của bạn</h1>
+        </div>
+        <div class="sheep-icon">🐑</div>
+      </div>
 
-      <div class="game-cards">
-        <button class="game-card farm-card" data-game="farm" type="button">
-          <span class="card-art farm-art" aria-hidden="true">
-            <span class="sun">☀</span>
-            <span class="cloud cloud-one">☁</span>
-            <span class="farm-hill hill-one"></span>
-            <span class="farm-hill hill-two"></span>
-            <span class="barn-emoji">🏡</span>
-            <span class="sheep-emoji sheep-one">🐑</span>
-            <span class="sheep-emoji sheep-two">🐑</span>
-            <span class="sheep-emoji sheep-three">🐑</span>
-            <span class="tree-emoji">🌳</span>
-          </span>
-          <span class="card-copy">
-            <span class="card-title">🐑 Nông Trại Cừu</span>
-            <span class="card-description">Thả sói, theo dõi đàn cừu và tìm người chơi cuối cùng.</span>
-            <span class="card-cta">VÀO NÔNG TRẠI <b>↗</b></span>
-          </span>
-        </button>
+      <div class="player-entry">
+        <label for="playerNames" class="field-label">Danh sách tên người chơi</label>
+        <textarea id="playerNames" spellcheck="false"
+          placeholder="Nhập mỗi người một dòng...&#10;An&#10;Bình&#10;Chi&#10;Dũng"></textarea>
+        <div class="field-hint">Mỗi dòng một tên, hoặc ngăn cách bằng dấu phẩy.</div>
+      </div>
 
-        <button class="game-card claw-card" data-game="claw" type="button">
-          <span class="card-art claw-art" aria-hidden="true">
-            <span class="claw-stars">✦　✧　✦</span>
-            <span class="toy toy-blue">🐻</span>
-            <span class="toy toy-pink">🐰</span>
-            <span class="toy toy-yellow">🐥</span>
-            <span class="machine-claw">⌄</span>
-            <span class="machine-glow"></span>
-          </span>
-          <span class="card-copy">
-            <span class="card-title">🧸 Máy Gắp Thú</span>
-            <span class="card-description">Điều khiển cần gắp và thu thập thú bông mang tên người chơi.</span>
-            <span class="card-cta">VÀO MÁY GẮP <b>↗</b></span>
-          </span>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">CÒN LẠI</span>
+          <strong id="remainingCount">0</strong>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">ĐÃ BỊ BẮT</span>
+          <strong id="caughtCount">0</strong>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">LƯỢT SĂN</span>
+          <strong id="roundCount">0</strong>
+        </div>
+      </div>
+
+      <div class="status-box" aria-live="polite">
+        <span class="status-icon">🌿</span>
+        <div>
+          <strong id="statusTitle">Nông trại đang yên bình</strong>
+          <p id="statusText">Nhập tên người chơi rồi tạo đàn cừu để bắt đầu.</p>
+        </div>
+      </div>
+
+      <div class="panel-actions">
+        <button id="createFlock" class="button button-primary">
+          <span>🐑</span> TẠO ĐÀN CỪU
         </button>
       </div>
 
-      <div id="continueRow" class="continue-row" hidden>
-        <span>Đang có một trò chơi mở.</span>
-        <button id="continueGame" type="button">TIẾP TỤC TRÒ CHƠI</button>
-      </div>
-      <div class="menu-footer">ONE LINK · TWO GAMES · ENDLESS FUN</div>
+      <div class="panel-footnote">Kéo chuột để xoay nông trại · Cuộn để zoom · Sói chỉ được thả khi bạn nhấn nút</div>
+    </aside>
+    <!-- Nút bật tắt bảng điều khiển -->
+    <button id="togglePanel" class="button panel-toggle" type="button" aria-expanded="true">
+      ⌄ ẨN BẢNG
+    </button>
+
+    <!-- Hai nút điều khiển cố định phía dưới -->
+    <div class="bottom-actions">
+
+      <button id="resetGame" class="button button-ghost" disabled>
+        ↻ BẮT ĐẦU LẠI
+      </button>
+
+      <button id="releaseWolf" class="button button-wolf" disabled>
+        🐺 THẢ SÓI
+      </button>
+
     </div>
-  </section>
+
+    <section id="caughtModal" class="caught-modal" aria-hidden="true">
+      <div class="caught-modal-backdrop" data-close-caught></div>
+      <div class="caught-dialog" role="dialog" aria-modal="true" aria-labelledby="caughtTitle"
+        aria-describedby="caughtDescription">
+        <button id="closeCaughtModal" class="caught-close" type="button" aria-label="Đóng thông báo">×</button>
+        <div class="caught-icon">🐺</div>
+        <div class="caught-eyebrow">THÔNG BÁO NÔNG TRẠI</div>
+        <h2 id="caughtTitle">NGƯỜI CHƠI BỊ BẮT!</h2>
+        <div id="caughtPlayerName" class="caught-player-name">Tên người chơi</div>
+        <p id="caughtDescription">Chú cừu đã bị sói bắt và đang được đưa ra lồng bên ngoài nông trại.</p>
+        <button id="dismissCaughtModal" class="caught-dismiss" type="button">ĐÓNG THÔNG BÁO</button>
+        <div class="caught-footnote">Bạn có thể tiếp tục theo dõi hành trình của sói sau khi đóng bảng này.</div>
+      </div>
+    </section>
+    <section id="welcomeModal" class="welcome-modal" aria-hidden="true">
+      <div class="welcome-backdrop"></div>
+
+      <div class="welcome-card" role="dialog" aria-modal="true">
+        <button id="closeWelcome" class="welcome-close" type="button">
+          ×
+        </button>
+
+        <div class="welcome-decoration">🌷 ✨ 🌷</div>
+
+        <div class="welcome-label">HAPPY VIETNAMESE TEACHERS' DAY</div>
+
+        <div class="welcome-date">20 · 11</div>
+
+        <h1>Chúc mừng ngày Nhà giáo Việt Nam</h1>
+
+        <div class="welcome-divider">✦ ❀ ✦</div>
+
+        <h2>Ms Windy</h2>
+
+        <p>
+          Kính chúc cô luôn mạnh khỏe, hạnh phúc,
+          tràn đầy nhiệt huyết và tiếp tục lan tỏa
+          thật nhiều yêu thương, tri thức đến các thế hệ học trò.
+        </p>
+
+        <div class="welcome-signature">
+          With love & gratitude ❤️
+        </div>
+
+        <button id="enterFarm" class="welcome-button" type="button">
+          KHÁM PHÁ NÔNG TRẠI
+        </button>
+
+        <div class="welcome-footer">THANK YOU FOR BEING AN INSPIRATION</div>
+      </div>
+    </section>
+    <footer class="scene-hint">
+      <span class="hint-dot"></span>
+      Kéo chuột để xoay · Cuộn để phóng to/thu nhỏ
+    </footer>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
 </body>
-<script src="./hub.js" defer></script>
+
 </html>

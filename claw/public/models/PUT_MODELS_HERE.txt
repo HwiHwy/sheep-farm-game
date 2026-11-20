@@ -1,5 +1,0 @@
-Optional plush model:
-- sheep22.glb
-
-Copy your current public/models/sheep22.glb here. The claw machine uses this model for every plush toy and recolors it randomly. If the file is missing, a built-in soft toy sheep model is used.
-Wolf.glb is no longer required in claw-machine mode.

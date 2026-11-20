@@ -1,7 +1,0 @@
-Optional audio files (copy them from your previous V11 public/audio folder):
-- farm-background.mp3
-- button-click.mp3
-- popup-chime.mp3
-
-The project will still run if these files are missing; button and popup tones are generated with Web Audio.
-Optional plush-win.mp3 can be enabled by setting plushWinUrl in src/main.js.

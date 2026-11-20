@@ -1,3 +1,0 @@
-Put your own audio files in this folder.
-Example: farm-background.mp3, sheep-bleat-1.mp3, button-click.mp3, popup-chime.mp3.
-Then set the corresponding paths in AUDIO_CONFIG near the top of src/main.js.

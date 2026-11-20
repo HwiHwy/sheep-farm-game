@@ -1,5 +1,0 @@
-Copy your model files into this folder and name them exactly:
-- sheep.glb
-- wolf.glb
-
-For a seated wolf animation, the wolf.glb should contain an animation clip named Sit, Sitting, Sit Down, or Lay Down. If it does not, the game uses its Idle/Stand clip instead.
