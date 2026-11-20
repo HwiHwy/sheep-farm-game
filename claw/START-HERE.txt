@@ -1,0 +1,11 @@
+SHEEP FARM → CLAW MACHINE V12
+
+1. Copy your existing public/models/sheep22.glb into this project's public/models/ folder (optional; fallback toy model is built in).
+2. Copy your existing public/audio/*.mp3 files into public/audio/ (optional).
+3. Open this folder in VS Code.
+4. Run:
+   npm.cmd install
+   npm.cmd run dev
+
+For GitHub Pages, vite.config.js is already set to /sheep-farm-game/.
+The .github/workflows/deploy.yml file builds and deploys on each push to main.
