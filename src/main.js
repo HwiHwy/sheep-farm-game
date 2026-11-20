@@ -1496,7 +1496,22 @@ const caughtModal = document.querySelector('#caughtModal');
 const caughtPlayerName = document.querySelector('#caughtPlayerName');
 const closeCaughtModalButton = document.querySelector('#closeCaughtModal');
 const dismissCaughtModalButton = document.querySelector('#dismissCaughtModal');
+// Control panel toggle
+const controlPanel = document.querySelector('#controlPanel');
+const togglePanelButton = document.querySelector('#togglePanel');
 
+togglePanelButton.addEventListener('click', () => {
+    const collapsed = controlPanel.classList.toggle('collapsed');
+
+    togglePanelButton.textContent = collapsed
+        ? '☰ MỞ BẢNG'
+        : '⌄ ẨN BẢNG';
+
+    togglePanelButton.setAttribute(
+        'aria-expanded',
+        String(!collapsed)
+    );
+});
 function setStatus(title, text, icon = '🌿') {
   statusTitle.textContent = title;
   statusText.textContent = text;
